@@ -2,287 +2,305 @@
 <html lang="th">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ตารางฤกษ์สัมภาษณ์มงคล</title>
-    <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;600&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Interview Schedule - Mobile View</title>
+    <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-color: #f8f9fa;
-            --text-color: #2d3436;
-            --mon-color: #FFC107; /* วันจันทร์ */
-            --thu-color: #FF7043; /* วันพฤหัส */
-            --fri-color: #42A5F5; /* วันศุกร์ */
-            --card-bg: #ffffff;
-            --star-color: #FFD700;
+            --bg-color: #f2f4f8;
+            --text-main: #1f2937;
+            --text-muted: #6b7280;
+            --mon-color: #FFC107;
+            --thu-color: #FF7043;
+            --fri-color: #42A5F5;
+            --best-bg: #fffbeb; /* สีพื้นหลังวันเกรด A */
+            --card-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
         }
 
         body {
             font-family: 'Prompt', sans-serif;
             background-color: var(--bg-color);
-            color: var(--text-color);
             margin: 0;
-            padding: 40px 20px;
-        }
-
-        .container {
-            max-width: 1100px;
-            margin: 0 auto;
+            padding: 15px 15px 80px 15px; /* เว้นล่างเผื่อ Footer */
+            color: var(--text-main);
+            -webkit-font-smoothing: antialiased;
         }
 
         header {
             text-align: center;
-            margin-bottom: 50px;
+            margin-bottom: 20px;
         }
 
         h1 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin: 0;
+            color: #111827;
+        }
+
+        p.subtitle {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin: 5px 0 0 0;
+        }
+
+        .month-label {
+            font-size: 1rem;
             font-weight: 600;
-            font-size: 2.5rem;
-            margin-bottom: 10px;
-            color: #2c3e50;
-        }
-
-        h2 {
-            font-weight: 300;
-            font-size: 1.2rem;
-            color: #636e72;
-        }
-
-        .month-section {
-            margin-bottom: 60px;
-        }
-
-        .month-title {
-            font-size: 1.8rem;
-            font-weight: 600;
-            color: #2c3e50;
-            border-bottom: 3px solid #dfe6e9;
-            padding-bottom: 10px;
-            margin-bottom: 30px;
-            display: inline-block;
+            color: #374151;
+            margin: 20px 0 10px 0;
+            padding-left: 10px;
+            border-left: 4px solid #3b82f6;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
         }
 
         .grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 25px;
+            grid-template-columns: 1fr 1fr; /* 2 คอลัมน์ */
+            gap: 12px;
         }
 
         .card {
-            background: var(--card-bg);
-            border-radius: 16px;
-            padding: 25px;
-            box-shadow: 0 10px 15px rgba(0,0,0,0.03);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            background: white;
+            border-radius: 12px;
+            padding: 12px;
             position: relative;
-            overflow: hidden;
-            border-top: 8px solid #ccc;
+            box-shadow: var(--card-shadow);
+            border-top: 5px solid #ccc; /* Default border */
+            display: flex;
+            flex-direction: column;
         }
 
-        .card:hover {
-            transform: translateY(-7px);
-            box-shadow: 0 20px 30px rgba(0,0,0,0.08);
-        }
-
-        /* Color Coding */
+        /* Color & Style Logic */
         .card.mon { border-top-color: var(--mon-color); }
         .card.thu { border-top-color: var(--thu-color); }
         .card.fri { border-top-color: var(--fri-color); }
 
-        /* Badges */
-        .badge {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            padding: 6px 12px;
-            border-radius: 30px;
-            font-size: 0.75rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
+        .card.best {
+            background-color: var(--best-bg);
+            border: 1px solid #fcd34d;
+            border-top: 5px solid var(--mon-color); /* Override top border */
         }
-        .badge.best { background-color: #e8f5e9; color: #2e7d32; border: 1px solid #c8e6c9; }
-        .badge.good { background-color: #fff3e0; color: #ef6c00; border: 1px solid #ffe0b2; }
 
-        .date-number {
-            font-size: 3rem;
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 5px;
+        }
+
+        .date-num {
+            font-size: 1.8rem;
             font-weight: 700;
             line-height: 1;
-            margin-bottom: 5px;
-            color: #2d3436;
+            color: #111827;
         }
 
-        .day-name {
-            font-size: 1.1rem;
-            font-weight: 500;
-            color: #b2bec3;
+        .day-badge {
+            font-size: 0.65rem;
+            font-weight: 600;
             text-transform: uppercase;
-            margin-bottom: 15px;
-            display: block;
+            padding: 2px 6px;
+            border-radius: 4px;
+            background: #f3f4f6;
+            color: #4b5563;
         }
 
         .stars {
-            color: var(--star-color);
-            font-size: 1.2rem;
-            margin-bottom: 15px;
-            letter-spacing: 3px;
-        }
-
-        .meaning {
-            font-size: 0.95rem;
-            margin-bottom: 20px;
-            line-height: 1.6;
-            color: #636e72;
-        }
-
-        .meaning strong {
-            color: #2d3436;
-            display: block;
+            font-size: 0.75rem;
+            color: #fbbf24;
+            letter-spacing: 1px;
             margin-bottom: 5px;
         }
 
-        .time-slot {
-            background-color: #f1f2f6;
-            padding: 12px;
-            border-radius: 8px;
-            font-size: 0.85rem;
-            color: #57606f;
+        .title {
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: #1f2937;
+            margin-bottom: 2px;
+        }
+
+        .desc {
+            font-size: 0.7rem;
+            color: #6b7280;
+            line-height: 1.3;
+        }
+
+        /* Sticky Footer */
+        .footer {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 15px;
             text-align: center;
-            font-weight: 500;
+            box-shadow: 0 -4px 6px -1px rgba(0, 0, 0, 0.05);
+            border-top: 1px solid #e5e7eb;
+            z-index: 100;
+        }
+
+        .time-box {
+            display: inline-block;
+            background: #eff6ff;
+            color: #1d4ed8;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 0.85rem;
         }
 
     </style>
 </head>
 <body>
 
-<div class="container">
     <header>
-        <h1>📅 ตารางฤกษ์สัมภาษณ์มงคล</h1>
-        <h2>วางแผนความสำเร็จ กุมภาพันธ์ - มีนาคม 2569</h2>
+        <h1>ตารางฤกษ์มงคล 📅</h1>
+        <p class="subtitle">ก.พ. - มี.ค. 69 | สำหรับ ดร. ศุภกฤต</p>
     </header>
 
-    <div class="month-section">
-        <div class="month-title">กุมภาพันธ์ 2569</div>
-        <div class="grid">
-            
-            <div class="card thu">
-                <div class="badge good">เสริมอำนาจ</div>
-                <div class="date-number">19</div>
-                <span class="day-name">พฤหัสบดี</span>
-                <div class="stars">★★</div>
-                <p class="meaning"><strong>พลัง "เดช" (อำนาจ)</strong>เหมาะกับการแสดงวิสัยทัศน์ผู้นำ นำเสนอกลยุทธ์</p>
-                <div class="time-slot">⏰ 09.09-10.29 / 13.39-14.29 น.</div>
+    <div class="month-label">
+        กุมภาพันธ์
+        <span style="font-size:0.8em; font-weight:normal; color:#999;">(4 วัน)</span>
+    </div>
+    
+    <div class="grid">
+        <div class="card thu">
+            <div class="card-header">
+                <span class="date-num">19</span>
+                <span class="day-badge">พฤหัส</span>
             </div>
+            <div class="stars">★★</div>
+            <div class="title">เสริมอำนาจ (เดช)</div>
+            <div class="desc">เหมาะแสดงวิสัยทัศน์ผู้นำ นำเสนอกลยุทธ์</div>
+        </div>
 
-            <div class="card fri">
-                <div class="badge good">ความมั่นคง</div>
-                <div class="date-number">20</div>
-                <span class="day-name">ศุกร์</span>
-                <div class="stars">★★</div>
-                <p class="meaning"><strong>พลัง "มูลละ" (ทรัพย์)</strong>วันธงชัย เหมาะเจรจาเงินเดือนและผลประโยชน์</p>
-                <div class="time-slot">⏰ 09.09-10.29 / 13.39-14.29 น.</div>
+        <div class="card fri">
+            <div class="card-header">
+                <span class="date-num">20</span>
+                <span class="day-badge">ศุกร์</span>
             </div>
+            <div class="stars">★★</div>
+            <div class="title">มั่นคง (มูลละ)</div>
+            <div class="desc">วันธงชัย เหมาะเจรจาเงินเดือน</div>
+        </div>
 
-            <div class="card mon" style="background-color: #fffde7;">
-                <div class="badge best">✨ ดีที่สุด</div>
-                <div class="date-number">23</div>
-                <span class="day-name">จันทร์</span>
-                <div class="stars">★★★</div>
-                <p class="meaning"><strong>พลัง "มนตรี" + ราชาฤกษ์</strong>ผู้ใหญ่เมตตาสูงสุด เหมาะคุยรอบ Final</p>
-                <div class="time-slot">⏰ 09.09-10.29 / 13.39-14.29 น.</div>
+        <div class="card mon best">
+            <div class="card-header">
+                <span class="date-num">23</span>
+                <span class="day-badge" style="background:#fff;">จันทร์</span>
             </div>
+            <div class="stars">★★★</div>
+            <div class="title">ดีที่สุด (ราชาฤกษ์)</div>
+            <div class="desc">ผู้ใหญ่เมตตาสูงสุด เหมาะคุยรอบ Final</div>
+        </div>
 
-            <div class="card thu">
-                <div class="badge good">เสริมอำนาจ</div>
-                <div class="date-number">26</div>
-                <span class="day-name">พฤหัสบดี</span>
-                <div class="stars">★★</div>
-                <p class="meaning"><strong>พลัง "เดช" (อำนาจ)</strong>หนักแน่น มั่นคง เหมาะกับการตัดสินใจ</p>
-                <div class="time-slot">⏰ 09.09-10.29 / 13.39-14.29 น.</div>
+        <div class="card thu">
+            <div class="card-header">
+                <span class="date-num">26</span>
+                <span class="day-badge">พฤหัส</span>
             </div>
-
+            <div class="stars">★★</div>
+            <div class="title">อำนาจ (เดช)</div>
+            <div class="desc">หนักแน่น มั่นคง เหมาะตัดสินใจ</div>
         </div>
     </div>
 
-    <div class="month-section">
-        <div class="month-title">มีนาคม 2569</div>
-        <div class="grid">
+    <div class="month-label">
+        มีนาคม
+        <span style="font-size:0.8em; font-weight:normal; color:#999;">(8 วัน)</span>
+    </div>
 
-            <div class="card mon" style="background-color: #fffde7;">
-                <div class="badge best">✨ ดีที่สุด</div>
-                <div class="date-number">02</div>
-                <span class="day-name">จันทร์</span>
-                <div class="stars">★★★</div>
-                <p class="meaning"><strong>พลัง "มนตรี" (เริ่มต้นดี)</strong>เริ่มต้นเดือนใหม่ ราบรื่น ลดความตึงเครียด</p>
-                <div class="time-slot">⏰ 09.09-10.29 / 13.39-14.29 น.</div>
+    <div class="grid">
+        <div class="card mon best">
+            <div class="card-header">
+                <span class="date-num">02</span>
+                <span class="day-badge" style="background:#fff;">จันทร์</span>
             </div>
+            <div class="stars">★★★</div>
+            <div class="title">เริ่มต้นดี (มนตรี)</div>
+            <div class="desc">เริ่มเดือนใหม่ราบรื่น ลดความตึงเครียด</div>
+        </div>
 
-            <div class="card thu">
-                <div class="badge good">วิชาการ</div>
-                <div class="date-number">05</div>
-                <span class="day-name">พฤหัสบดี</span>
-                <div class="stars">★★</div>
-                <p class="meaning"><strong>พลัง "เดช" (วันครู)</strong>เหมาะโชว์ภูมิรู้ด้าน Governance และ Technical</p>
-                <div class="time-slot">⏰ 09.09-10.29 / 13.39-14.29 น.</div>
+        <div class="card thu">
+            <div class="card-header">
+                <span class="date-num">05</span>
+                <span class="day-badge">พฤหัส</span>
             </div>
+            <div class="stars">★★</div>
+            <div class="title">วิชาการ (เดช)</div>
+            <div class="desc">วันครู เหมาะโชว์ภูมิรู้ด้าน Tech</div>
+        </div>
 
-            <div class="card thu">
-                <div class="badge good">มั่นคงที่สุด</div>
-                <div class="date-number">12</div>
-                <span class="day-name">พฤหัสบดี</span>
-                <div class="stars">★★</div>
-                <p class="meaning"><strong>พลัง "เดช" + ภูมิปาโล</strong>ฤกษ์แผ่นดินมั่นคง เหมาะเซ็นสัญญา</p>
-                <div class="time-slot">⏰ 09.09-10.29 / 13.39-14.29 น.</div>
+        <div class="card thu">
+            <div class="card-header">
+                <span class="date-num">12</span>
+                <span class="day-badge">พฤหัส</span>
             </div>
+            <div class="stars">★★</div>
+            <div class="title">มั่นคงที่สุด</div>
+            <div class="desc">ฤกษ์ภูมิปาโล เหมาะเซ็นสัญญา</div>
+        </div>
 
-            <div class="card mon" style="background-color: #fffde7;">
-                <div class="badge best">✨ ดีที่สุด</div>
-                <div class="date-number">16</div>
-                <span class="day-name">จันทร์</span>
-                <div class="stars">★★★</div>
-                <p class="meaning"><strong>พลัง "มนตรี" (ติดตามผล)</strong>เหมาะติดตามผล หรือเริ่มงานวันแรก</p>
-                <div class="time-slot">⏰ 09.09-10.29 / 13.39-14.29 น.</div>
+        <div class="card mon best">
+            <div class="card-header">
+                <span class="date-num">16</span>
+                <span class="day-badge" style="background:#fff;">จันทร์</span>
             </div>
+            <div class="stars">★★★</div>
+            <div class="title">ติดตามผล</div>
+            <div class="desc">ผู้ใหญ่สนับสนุน หรือเริ่มงานวันแรก</div>
+        </div>
 
-            <div class="card thu">
-                <div class="badge good">เจรจาลึก</div>
-                <div class="date-number">19</div>
-                <span class="day-name">พฤหัสบดี</span>
-                <div class="stars">★★</div>
-                <p class="meaning"><strong>พลัง "เดช" (กลยุทธ์)</strong>เหมาะนำเสนอแผนงาน Deep Dive Interview</p>
-                <div class="time-slot">⏰ 09.09-10.29 / 13.39-14.29 น.</div>
+        <div class="card thu">
+            <div class="card-header">
+                <span class="date-num">19</span>
+                <span class="day-badge">พฤหัส</span>
             </div>
+            <div class="stars">★★</div>
+            <div class="title">กลยุทธ์ลึก</div>
+            <div class="desc">เหมาะ Deep Dive Interview</div>
+        </div>
 
-            <div class="card mon" style="background-color: #fffde7;">
-                <div class="badge best">✨ ดีที่สุด</div>
-                <div class="date-number">23</div>
-                <span class="day-name">จันทร์</span>
-                <div class="stars">★★★</div>
-                <p class="meaning"><strong>พลัง "มนตรี" (รอบ Final)</strong>ราบรื่น คุยเรื่องสัญญาจบสวย</p>
-                <div class="time-slot">⏰ 09.09-10.29 / 13.39-14.29 น.</div>
+        <div class="card mon best">
+            <div class="card-header">
+                <span class="date-num">23</span>
+                <span class="day-badge" style="background:#fff;">จันทร์</span>
             </div>
+            <div class="stars">★★★</div>
+            <div class="title">รอบ Final</div>
+            <div class="desc">ราบรื่น คุยเรื่องสัญญาจบสวย</div>
+        </div>
 
-            <div class="card thu">
-                <div class="badge good">วิชาการ</div>
-                <div class="date-number">26</div>
-                <span class="day-name">พฤหัสบดี</span>
-                <div class="stars">★★</div>
-                <p class="meaning"><strong>พลัง "เดช" (บริหาร)</strong>หนักแน่นทางวิชาการและการบริหารจัดการ</p>
-                <div class="time-slot">⏰ 09.09-10.29 / 13.39-14.29 น.</div>
+        <div class="card thu">
+            <div class="card-header">
+                <span class="date-num">26</span>
+                <span class="day-badge">พฤหัส</span>
             </div>
+            <div class="stars">★★</div>
+            <div class="title">บริหารจัดการ</div>
+            <div class="desc">หนักแน่นทางวิชาการและบริหาร</div>
+        </div>
 
-            <div class="card mon" style="background-color: #fffde7;">
-                <div class="badge best">✨ ดีที่สุด</div>
-                <div class="date-number">30</div>
-                <span class="day-name">จันทร์</span>
-                <div class="stars">★★★</div>
-                <p class="meaning"><strong>พลัง "มนตรี" (ปิดดีล)</strong>วันสุดท้ายของเดือน ปิดจ็อบก่อนสงกรานต์</p>
-                <div class="time-slot">⏰ 09.09-10.29 / 13.39-14.29 น.</div>
+        <div class="card mon best">
+            <div class="card-header">
+                <span class="date-num">30</span>
+                <span class="day-badge" style="background:#fff;">จันทร์</span>
             </div>
-
+            <div class="stars">★★★</div>
+            <div class="title">ปิดดีล</div>
+            <div class="desc">วันสุดท้ายของเดือน ปิดจ็อบสวยๆ</div>
         </div>
     </div>
 
-</div>
+    <div class="footer">
+        <div style="font-size:0.75rem; color:#666; margin-bottom:5px;">⏰ ช่วงเวลามงคล (เหมือนกันทุกวัน)</div>
+        <div class="time-box">09.09-10.29 น.</div>
+        <div class="time-box" style="background:#fff3e0; color:#e65100;">13.39-14.29 น.</div>
+    </div>
 
 </body>
 </html>

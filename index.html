@@ -3,17 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Interview Schedule - Mobile View</title>
+    <title>Interview Schedule</title>
     <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-color: #f2f4f8;
-            --text-main: #1f2937;
+            --bg-color: #f3f4f6;
+            --text-main: #111827;
             --text-muted: #6b7280;
             --mon-color: #FFC107;
             --thu-color: #FF7043;
             --fri-color: #42A5F5;
-            --best-bg: #fffbeb; /* สีพื้นหลังวันเกรด A */
+            --best-bg: #fffbeb;
             --card-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
         }
 
@@ -21,59 +21,68 @@
             font-family: 'Prompt', sans-serif;
             background-color: var(--bg-color);
             margin: 0;
-            padding: 15px 15px 80px 15px; /* เว้นล่างเผื่อ Footer */
+            padding: 20px 15px 100px 15px; /* เว้นล่างเผื่อ Footer */
             color: var(--text-main);
             -webkit-font-smoothing: antialiased;
         }
 
         header {
             text-align: center;
-            margin-bottom: 20px;
+            margin-bottom: 25px;
         }
 
         h1 {
-            font-size: 1.25rem;
+            font-size: 1.5rem;
             font-weight: 700;
             margin: 0;
-            color: #111827;
+            color: #1f2937;
         }
 
         p.subtitle {
-            font-size: 0.85rem;
+            font-size: 0.9rem;
             color: var(--text-muted);
             margin: 5px 0 0 0;
+            font-weight: 500;
         }
 
         .month-label {
-            font-size: 1rem;
-            font-weight: 600;
+            font-size: 1.1rem;
+            font-weight: 700;
             color: #374151;
-            margin: 20px 0 10px 0;
-            padding-left: 10px;
-            border-left: 4px solid #3b82f6;
+            margin: 25px 0 15px 0;
+            padding-left: 12px;
+            border-left: 5px solid #3b82f6;
             display: flex;
-            align-items: center;
+            align-items: baseline;
             justify-content: space-between;
+        }
+
+        .month-sub {
+            font-size: 0.8rem;
+            font-weight: 400;
+            color: #9ca3af;
         }
 
         .grid {
             display: grid;
             grid-template-columns: 1fr 1fr; /* 2 คอลัมน์ */
-            gap: 12px;
+            gap: 15px;
         }
 
         .card {
             background: white;
-            border-radius: 12px;
-            padding: 12px;
+            border-radius: 16px;
+            padding: 15px;
             position: relative;
             box-shadow: var(--card-shadow);
-            border-top: 5px solid #ccc; /* Default border */
+            border-top: 6px solid #ccc;
             display: flex;
             flex-direction: column;
+            justify-content: space-between;
+            min-height: 110px;
         }
 
-        /* Color & Style Logic */
+        /* Color Logic */
         .card.mon { border-top-color: var(--mon-color); }
         .card.thu { border-top-color: var(--thu-color); }
         .card.fri { border-top-color: var(--fri-color); }
@@ -81,76 +90,100 @@
         .card.best {
             background-color: var(--best-bg);
             border: 1px solid #fcd34d;
-            border-top: 5px solid var(--mon-color); /* Override top border */
+            border-top: 6px solid var(--mon-color);
         }
 
         .card-header {
             display: flex;
             justify-content: space-between;
             align-items: flex-start;
-            margin-bottom: 5px;
+            margin-bottom: 8px;
         }
 
         .date-num {
-            font-size: 1.8rem;
-            font-weight: 700;
-            line-height: 1;
-            color: #111827;
+            font-size: 2.2rem;
+            font-weight: 800;
+            line-height: 0.9;
+            color: #1f2937;
         }
 
         .day-badge {
-            font-size: 0.65rem;
-            font-weight: 600;
+            font-size: 0.7rem;
+            font-weight: 700;
             text-transform: uppercase;
-            padding: 2px 6px;
-            border-radius: 4px;
+            padding: 3px 8px;
+            border-radius: 6px;
             background: #f3f4f6;
             color: #4b5563;
         }
 
+        .content {
+            flex-grow: 1;
+        }
+
         .stars {
-            font-size: 0.75rem;
+            font-size: 0.8rem;
             color: #fbbf24;
-            letter-spacing: 1px;
-            margin-bottom: 5px;
+            letter-spacing: 2px;
+            margin-bottom: 6px;
         }
 
         .title {
-            font-size: 0.8rem;
-            font-weight: 600;
-            color: #1f2937;
-            margin-bottom: 2px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: #111827;
+            margin-bottom: 4px;
         }
 
         .desc {
-            font-size: 0.7rem;
+            font-size: 0.75rem;
             color: #6b7280;
-            line-height: 1.3;
+            line-height: 1.4;
         }
 
-        /* Sticky Footer */
+        /* Fixed Footer */
         .footer {
             position: fixed;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            background: rgba(255, 255, 255, 0.95);
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 90%;
+            max-width: 400px;
+            background: rgba(255, 255, 255, 0.98);
             backdrop-filter: blur(10px);
             padding: 15px;
             text-align: center;
-            box-shadow: 0 -4px 6px -1px rgba(0, 0, 0, 0.05);
-            border-top: 1px solid #e5e7eb;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+            border-radius: 20px;
+            border: 1px solid rgba(255,255,255,0.5);
             z-index: 100;
         }
 
-        .time-box {
-            display: inline-block;
-            background: #eff6ff;
-            color: #1d4ed8;
-            padding: 5px 12px;
-            border-radius: 20px;
+        .time-label {
+            font-size: 0.75rem;
+            color: #6b7280;
+            margin-bottom: 8px;
             font-weight: 600;
+        }
+
+        .time-slots {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .time-box {
+            background: #eff6ff;
+            color: #2563eb;
+            padding: 6px 12px;
+            border-radius: 12px;
+            font-weight: 700;
             font-size: 0.85rem;
+        }
+        
+        .time-box.afternoon {
+            background: #fff7ed;
+            color: #ea580c;
         }
 
     </style>
@@ -159,147 +192,173 @@
 
     <header>
         <h1>ตารางฤกษ์มงคล 📅</h1>
-        <p class="subtitle">ก.พ. - มี.ค. 69 | สำหรับ ดร. ศุภกฤต</p>
+        <p class="subtitle">กุมภาพันธ์ - มีนาคม 2569</p>
     </header>
 
     <div class="month-label">
         กุมภาพันธ์
-        <span style="font-size:0.8em; font-weight:normal; color:#999;">(4 วัน)</span>
+        <span class="month-sub">4 วันมงคล</span>
     </div>
     
     <div class="grid">
         <div class="card thu">
             <div class="card-header">
                 <span class="date-num">19</span>
-                <span class="day-badge">พฤหัส</span>
+                <span class="day-badge">พฤ.</span>
             </div>
-            <div class="stars">★★</div>
-            <div class="title">เสริมอำนาจ (เดช)</div>
-            <div class="desc">เหมาะแสดงวิสัยทัศน์ผู้นำ นำเสนอกลยุทธ์</div>
+            <div class="content">
+                <div class="stars">★★</div>
+                <div class="title">เสริมอำนาจ (เดช)</div>
+                <div class="desc">เหมาะแสดงวิสัยทัศน์ผู้นำ นำเสนอกลยุทธ์</div>
+            </div>
         </div>
 
         <div class="card fri">
             <div class="card-header">
                 <span class="date-num">20</span>
-                <span class="day-badge">ศุกร์</span>
+                <span class="day-badge">ศ.</span>
             </div>
-            <div class="stars">★★</div>
-            <div class="title">มั่นคง (มูลละ)</div>
-            <div class="desc">วันธงชัย เหมาะเจรจาเงินเดือน</div>
+            <div class="content">
+                <div class="stars">★★</div>
+                <div class="title">มั่นคง (มูลละ)</div>
+                <div class="desc">วันธงชัย เหมาะเจรจาเงินเดือน</div>
+            </div>
         </div>
 
         <div class="card mon best">
             <div class="card-header">
                 <span class="date-num">23</span>
-                <span class="day-badge" style="background:#fff;">จันทร์</span>
+                <span class="day-badge" style="background:#fff;">จ.</span>
             </div>
-            <div class="stars">★★★</div>
-            <div class="title">ดีที่สุด (ราชาฤกษ์)</div>
-            <div class="desc">ผู้ใหญ่เมตตาสูงสุด เหมาะคุยรอบ Final</div>
+            <div class="content">
+                <div class="stars">★★★</div>
+                <div class="title">ดีที่สุด (ราชาฤกษ์)</div>
+                <div class="desc">ผู้ใหญ่เมตตาสูงสุด เหมาะคุยรอบ Final</div>
+            </div>
         </div>
 
         <div class="card thu">
             <div class="card-header">
                 <span class="date-num">26</span>
-                <span class="day-badge">พฤหัส</span>
+                <span class="day-badge">พฤ.</span>
             </div>
-            <div class="stars">★★</div>
-            <div class="title">อำนาจ (เดช)</div>
-            <div class="desc">หนักแน่น มั่นคง เหมาะตัดสินใจ</div>
+            <div class="content">
+                <div class="stars">★★</div>
+                <div class="title">อำนาจ (เดช)</div>
+                <div class="desc">หนักแน่น มั่นคง เหมาะตัดสินใจ</div>
+            </div>
         </div>
     </div>
 
     <div class="month-label">
         มีนาคม
-        <span style="font-size:0.8em; font-weight:normal; color:#999;">(8 วัน)</span>
+        <span class="month-sub">8 วันมงคล</span>
     </div>
 
     <div class="grid">
         <div class="card mon best">
             <div class="card-header">
                 <span class="date-num">02</span>
-                <span class="day-badge" style="background:#fff;">จันทร์</span>
+                <span class="day-badge" style="background:#fff;">จ.</span>
             </div>
-            <div class="stars">★★★</div>
-            <div class="title">เริ่มต้นดี (มนตรี)</div>
-            <div class="desc">เริ่มเดือนใหม่ราบรื่น ลดความตึงเครียด</div>
+            <div class="content">
+                <div class="stars">★★★</div>
+                <div class="title">เริ่มต้นดี (มนตรี)</div>
+                <div class="desc">เริ่มเดือนใหม่ราบรื่น ลดความตึงเครียด</div>
+            </div>
         </div>
 
         <div class="card thu">
             <div class="card-header">
                 <span class="date-num">05</span>
-                <span class="day-badge">พฤหัส</span>
+                <span class="day-badge">พฤ.</span>
             </div>
-            <div class="stars">★★</div>
-            <div class="title">วิชาการ (เดช)</div>
-            <div class="desc">วันครู เหมาะโชว์ภูมิรู้ด้าน Tech</div>
+            <div class="content">
+                <div class="stars">★★</div>
+                <div class="title">วิชาการ (เดช)</div>
+                <div class="desc">วันครู เหมาะโชว์ภูมิรู้ด้าน Tech</div>
+            </div>
         </div>
 
         <div class="card thu">
             <div class="card-header">
                 <span class="date-num">12</span>
-                <span class="day-badge">พฤหัส</span>
+                <span class="day-badge">พฤ.</span>
             </div>
-            <div class="stars">★★</div>
-            <div class="title">มั่นคงที่สุด</div>
-            <div class="desc">ฤกษ์ภูมิปาโล เหมาะเซ็นสัญญา</div>
+            <div class="content">
+                <div class="stars">★★</div>
+                <div class="title">มั่นคงที่สุด</div>
+                <div class="desc">ฤกษ์ภูมิปาโล เหมาะเซ็นสัญญา</div>
+            </div>
         </div>
 
         <div class="card mon best">
             <div class="card-header">
                 <span class="date-num">16</span>
-                <span class="day-badge" style="background:#fff;">จันทร์</span>
+                <span class="day-badge" style="background:#fff;">จ.</span>
             </div>
-            <div class="stars">★★★</div>
-            <div class="title">ติดตามผล</div>
-            <div class="desc">ผู้ใหญ่สนับสนุน หรือเริ่มงานวันแรก</div>
+            <div class="content">
+                <div class="stars">★★★</div>
+                <div class="title">ติดตามผล</div>
+                <div class="desc">ผู้ใหญ่สนับสนุน หรือเริ่มงานวันแรก</div>
+            </div>
         </div>
 
         <div class="card thu">
             <div class="card-header">
                 <span class="date-num">19</span>
-                <span class="day-badge">พฤหัส</span>
+                <span class="day-badge">พฤ.</span>
             </div>
-            <div class="stars">★★</div>
-            <div class="title">กลยุทธ์ลึก</div>
-            <div class="desc">เหมาะ Deep Dive Interview</div>
+            <div class="content">
+                <div class="stars">★★</div>
+                <div class="title">กลยุทธ์ลึก</div>
+                <div class="desc">เหมาะ Deep Dive Interview</div>
+            </div>
         </div>
 
         <div class="card mon best">
             <div class="card-header">
                 <span class="date-num">23</span>
-                <span class="day-badge" style="background:#fff;">จันทร์</span>
+                <span class="day-badge" style="background:#fff;">จ.</span>
             </div>
-            <div class="stars">★★★</div>
-            <div class="title">รอบ Final</div>
-            <div class="desc">ราบรื่น คุยเรื่องสัญญาจบสวย</div>
+            <div class="content">
+                <div class="stars">★★★</div>
+                <div class="title">รอบ Final</div>
+                <div class="desc">ราบรื่น คุยเรื่องสัญญาจบสวย</div>
+            </div>
         </div>
 
         <div class="card thu">
             <div class="card-header">
                 <span class="date-num">26</span>
-                <span class="day-badge">พฤหัส</span>
+                <span class="day-badge">พฤ.</span>
             </div>
-            <div class="stars">★★</div>
-            <div class="title">บริหารจัดการ</div>
-            <div class="desc">หนักแน่นทางวิชาการและบริหาร</div>
+            <div class="content">
+                <div class="stars">★★</div>
+                <div class="title">บริหารจัดการ</div>
+                <div class="desc">หนักแน่นทางวิชาการและบริหาร</div>
+            </div>
         </div>
 
         <div class="card mon best">
             <div class="card-header">
                 <span class="date-num">30</span>
-                <span class="day-badge" style="background:#fff;">จันทร์</span>
+                <span class="day-badge" style="background:#fff;">จ.</span>
             </div>
-            <div class="stars">★★★</div>
-            <div class="title">ปิดดีล</div>
-            <div class="desc">วันสุดท้ายของเดือน ปิดจ็อบสวยๆ</div>
+            <div class="content">
+                <div class="stars">★★★</div>
+                <div class="title">ปิดดีล</div>
+                <div class="desc">วันสุดท้ายของเดือน ปิดจ็อบสวยๆ</div>
+            </div>
         </div>
     </div>
 
     <div class="footer">
-        <div style="font-size:0.75rem; color:#666; margin-bottom:5px;">⏰ ช่วงเวลามงคล (เหมือนกันทุกวัน)</div>
-        <div class="time-box">09.09-10.29 น.</div>
-        <div class="time-box" style="background:#fff3e0; color:#e65100;">13.39-14.29 น.</div>
+        <div class="time-label">⏰ ช่วงเวลามงคล (เหมือนกันทุกวัน)</div>
+        <div class="time-slots">
+            <div class="time-box">09.09-10.29 น.</div>
+            <div class="time-box afternoon">13.39-14.29 น.</div>
+        </div>
     </div>
 
 </body>

@@ -9,8 +9,8 @@
         :root {
             --bg-color: #f8f9fa;
             --text-color: #2d3436;
-            --mon-color: #FFC107; /* วันจันทร์ - มนตรี */
-            --thu-color: #FF7043; /* วันพฤหัสบดี - เดช */
+            --mon-color: #FFC107; 
+            --thu-color: #FF7043; 
             --card-bg: #ffffff;
             --star-color: #FFD700;
         }
@@ -35,14 +35,14 @@
 
         h1 {
             font-weight: 600;
-            font-size: 2.5rem;
+            font-size: 2rem;
             margin-bottom: 10px;
             color: #2c3e50;
         }
 
         h2 {
             font-weight: 300;
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             color: #636e72;
         }
 
@@ -51,101 +51,111 @@
         }
 
         .month-title {
-            font-size: 1.8rem;
+            font-size: 1.6rem;
             font-weight: 600;
             color: #2c3e50;
             border-bottom: 3px solid #dfe6e9;
-            padding-bottom: 10px;
-            margin-bottom: 30px;
+            padding-bottom: 8px;
+            margin-bottom: 25px;
             display: inline-block;
         }
 
         .grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 25px;
+            gap: 20px;
         }
 
         .card {
             background: var(--card-bg);
-            border-radius: 16px;
-            padding: 25px;
-            box-shadow: 0 10px 15px rgba(0,0,0,0.03);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 8px 12px rgba(0,0,0,0.03);
+            transition: transform 0.3s ease;
             position: relative;
             overflow: hidden;
-            border-top: 8px solid #ccc;
+            border-top: 6px solid #ccc;
         }
 
-        .card:hover {
-            transform: translateY(-7px);
-            box-shadow: 0 20px 30px rgba(0,0,0,0.08);
-        }
-
-        /* Color Coding */
         .card.mon { border-top-color: var(--mon-color); }
         .card.thu { border-top-color: var(--thu-color); }
 
         .badge {
             position: absolute;
-            top: 20px;
-            right: 20px;
-            padding: 6px 12px;
-            border-radius: 30px;
-            font-size: 0.75rem;
+            top: 15px;
+            right: 15px;
+            padding: 4px 8px;
+            border-radius: 20px;
+            font-size: 0.65rem;
             font-weight: 600;
             text-transform: uppercase;
-            letter-spacing: 0.5px;
         }
         .badge.best { background-color: #fffde7; color: #f57f17; border: 1px solid #fff9c4; }
         .badge.good { background-color: #fbe9e7; color: #d84315; border: 1px solid #ffccbc; }
         .badge.stier { background-color: #f3e5f5; color: #7b1fa2; border: 1px solid #e1bee7; }
 
         .date-number {
-            font-size: 3rem;
+            font-size: 2.5rem;
             font-weight: 700;
             line-height: 1;
             margin-bottom: 5px;
-            color: #2d3436;
         }
 
         .day-name {
-            font-size: 1.1rem;
+            font-size: 0.9rem;
             font-weight: 500;
             color: #b2bec3;
-            text-transform: uppercase;
-            margin-bottom: 15px;
+            margin-bottom: 10px;
             display: block;
         }
 
         .stars {
             color: var(--star-color);
-            font-size: 1.2rem;
-            margin-bottom: 15px;
-            letter-spacing: 3px;
+            font-size: 1rem;
+            margin-bottom: 12px;
+            letter-spacing: 2px;
         }
 
         .meaning {
-            font-size: 0.95rem;
-            margin-bottom: 20px;
-            line-height: 1.6;
+            font-size: 0.85rem;
+            margin-bottom: 15px;
+            line-height: 1.5;
             color: #636e72;
         }
 
         .meaning strong {
             color: #2d3436;
             display: block;
-            margin-bottom: 5px;
+            margin-bottom: 3px;
         }
 
         .time-slot {
             background-color: #f1f2f6;
-            padding: 12px;
-            border-radius: 8px;
-            font-size: 0.85rem;
+            padding: 8px;
+            border-radius: 6px;
+            font-size: 0.75rem;
             color: #57606f;
             text-align: center;
-            font-weight: 500;
+        }
+
+        /* สำหรับหน้าจอมือถือ: แสดงผล 2 คอลัมน์ */
+        @media (max-width: 600px) {
+            body { padding: 20px 10px; }
+            h1 { font-size: 1.6rem; }
+            .grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 12px;
+            }
+            .card { padding: 12px; }
+            .date-number { font-size: 2rem; }
+            .badge { 
+                top: 8px; 
+                right: 8px; 
+                font-size: 0.55rem; 
+                padding: 2px 6px;
+            }
+            .meaning { font-size: 0.75rem; }
+            .time-slot { font-size: 0.65rem; padding: 5px; }
         }
     </style>
 </head>
@@ -153,7 +163,7 @@
 
 <div class="container">
     <header>
-        <h1>📅 ตารางฤกษ์สัมภาษณ์มงคล</h1>
+        <h1>📅 ตารางฤกษ์มงคล</h1>
         <h2>สำหรับคนเกิดวันพุธกลางวัน (เมษายน - มิถุนายน 2569)</h2>
     </header>
 
@@ -165,24 +175,24 @@
                 <div class="date-number">20</div>
                 <span class="day-name">จันทร์</span>
                 <div class="stars">★★★</div>
-                <p class="meaning"><strong>พลังเมตตาอุปถัมภ์</strong> เหมาะสำหรับการสัมภาษณ์รอบแรก สร้าง First Impression ที่ดี</p>
-                <div class="time-slot">⏰ 10.11-11.11 / 14.00-15.00 น.</div>
+                <p class="meaning"><strong>พลังเมตตา</strong> รอบแรกสร้าง First Impression</p>
+                <div class="time-slot">⏰ 10.11 / 14.00</div>
             </div>
             <div class="card mon" style="background-color: #fffde7;">
                 <div class="badge best">✨ มนตรี</div>
                 <div class="date-number">27</div>
                 <span class="day-name">จันทร์</span>
                 <div class="stars">★★★</div>
-                <p class="meaning"><strong>เสริมเสน่ห์การเจรจา</strong> ผู้ใหญ่เอ็นดูพร้อมสนับสนุน เหมาะคุยระดับผู้บริหาร</p>
-                <div class="time-slot">⏰ 10.11-11.11 / 14.00-15.00 น.</div>
+                <p class="meaning"><strong>เสริมเสน่ห์</strong> ผู้ใหญ่เอ็นดูพร้อมหนุน</p>
+                <div class="time-slot">⏰ 10.11 / 14.00</div>
             </div>
             <div class="card thu">
                 <div class="badge good">เดชบารมี</div>
                 <div class="date-number">30</div>
                 <span class="day-name">พฤหัสบดี</span>
                 <div class="stars">★★</div>
-                <p class="meaning"><strong>พลังอำนาจการตัดสินใจ</strong> เหมาะสำหรับเจรจาต่อรองเงื่อนไขและเงินเดือน</p>
-                <div class="time-slot">⏰ 10.11-11.11 / 14.00-15.00 น.</div>
+                <p class="meaning"><strong>พลังอำนาจ</strong> ต่อรองเงินเดือนได้ดี</p>
+                <div class="time-slot">⏰ 10.11 / 14.00</div>
             </div>
         </div>
     </div>
@@ -195,24 +205,24 @@
                 <div class="date-number">11</div>
                 <span class="day-name">จันทร์</span>
                 <div class="stars">★★★</div>
-                <p class="meaning"><strong>พลังสนับสนุนราบรื่น</strong> ลดอุปสรรคในการสื่อสาร กรรมการเปิดใจรับฟัง</p>
-                <div class="time-slot">⏰ 10.11-11.11 / 14.00-15.00 น.</div>
+                <p class="meaning"><strong>พลังอุปถัมภ์</strong> กรรมการเปิดใจฟัง</p>
+                <div class="time-slot">⏰ 10.11 / 14.00</div>
             </div>
             <div class="card thu" style="background-color: #fdfaf6; border-top-color: #9C27B0;">
                 <div class="badge stier">🏆 S-TIER</div>
                 <div class="date-number">14</div>
                 <span class="day-name">พฤหัสบดี</span>
                 <div class="stars">★★★★★</div>
-                <p class="meaning"><strong>มหาสิทธิโชค + พลังเดช</strong> วันมงคลสูงสุด โชว์วิสัยทัศน์ Manager ได้โดดเด่นที่สุด</p>
-                <div class="time-slot">⏰ 10.11-11.11 / 14.00-15.00 น.</div>
+                <p class="meaning"><strong>มหาสิทธิโชค</strong> โชว์วิสัยทัศน์ได้ยอดเยี่ยม</p>
+                <div class="time-slot">⏰ 10.11 / 14.00</div>
             </div>
             <div class="card mon" style="background-color: #fffde7;">
                 <div class="badge best">✨ มนตรี</div>
                 <div class="date-number">25</div>
                 <span class="day-name">จันทร์</span>
                 <div class="stars">★★★</div>
-                <p class="meaning"><strong>เมตตามหานิยม</strong> เหมาะสำหรับการสัมภาษณ์รอบ Final เพื่อปิดดีลงาน</p>
-                <div class="time-slot">⏰ 10.11-11.11 / 14.00-15.00 น.</div>
+                <p class="meaning"><strong>เมตตามหานิยม</strong> รอบ Final ปิดดีลสวย</p>
+                <div class="time-slot">⏰ 10.11 / 14.00</div>
             </div>
         </div>
     </div>
@@ -225,32 +235,32 @@
                 <div class="date-number">01</div>
                 <span class="day-name">จันทร์</span>
                 <div class="stars">★★★</div>
-                <p class="meaning"><strong>เริ่มต้นเดือนแห่งโชค</strong> วันแห่งการอุปถัมภ์เริ่มต้นสิ่งใหม่ได้อย่างราบรื่น</p>
-                <div class="time-slot">⏰ 10.11-11.11 / 14.00-15.00 น.</div>
+                <p class="meaning"><strong>เริ่มต้นดี</strong> ราบรื่นตลอดทั้งเดือน</p>
+                <div class="time-slot">⏰ 10.11 / 14.00</div>
             </div>
             <div class="card thu" style="background-color: #fdfaf6; border-top-color: #9C27B0;">
                 <div class="badge stier">🏆 S-TIER</div>
                 <div class="date-number">11</div>
                 <span class="day-name">พฤหัสบดี</span>
                 <div class="stars">★★★★★</div>
-                <p class="meaning"><strong>มหาสิทธิโชคประจำเดือน</strong> พลังแห่งความสำเร็จและบารมี โชว์ศักยภาพได้เต็มที่</p>
-                <div class="time-slot">⏰ 10.11-11.11 / 14.00-15.00 น.</div>
+                <p class="meaning"><strong>ฤกษ์ใหญ่</strong> พลังบารมีสำเร็จสมหวัง</p>
+                <div class="time-slot">⏰ 10.11 / 14.00</div>
             </div>
             <div class="card mon" style="background-color: #fffde7;">
                 <div class="badge best">✨ มนตรี</div>
                 <div class="date-number">22</div>
                 <span class="day-name">จันทร์</span>
                 <div class="stars">★★★</div>
-                <p class="meaning"><strong>เสน่ห์การเจรจาสูง</strong> เหมาะเข้าพบผู้บริหารเพื่อแสดงวิสัยทัศน์ความเป็นผู้นำ</p>
-                <div class="time-slot">⏰ 10.11-11.11 / 14.00-15.00 น.</div>
+                <p class="meaning"><strong>เสน่ห์ผู้นำ</strong> เจรจาได้อย่างมีพลัง</p>
+                <div class="time-slot">⏰ 10.11 / 14.00</div>
             </div>
             <div class="card thu">
                 <div class="badge good">เดชบารมี</div>
                 <div class="date-number">25</div>
                 <span class="day-name">พฤหัสบดี</span>
                 <div class="stars">★★</div>
-                <p class="meaning"><strong>พลังอำนาจที่มั่นคง</strong> เหมาะสำหรับการสรุปข้อตกลงหรือเซ็นสัญญาจ้างงาน</p>
-                <div class="time-slot">⏰ 10.11-11.11 / 14.00-15.00 น.</div>
+                <p class="meaning"><strong>ปิดจ็อบ</strong> เซ็นสัญญาจ้างงาน</p>
+                <div class="time-slot">⏰ 10.11 / 14.00</div>
             </div>
         </div>
     </div>
